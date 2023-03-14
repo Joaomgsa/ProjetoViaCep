@@ -31,4 +31,23 @@ export function init(){
     state.errorNumber = document.querySelector('[data-error="number"]');
 
     console.log(state);
+
+
+    state.inputNumber.addEventListener('change', handleInputNumberChange);
+
+}
+
+function handleInputNumberChange(event){
+    if (event.target.value == ""){
+        setFormError("number", "O campo requerido");
+    }
+    else{
+        setFormError("number", "");
+    }
+}
+
+
+function setFormError(key, value){
+    const element = document.querySelector(`[data-error="${key}"]`);
+    element.innerHTML = value;
 }
