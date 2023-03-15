@@ -30,21 +30,44 @@ export function init(){
     state.errorCep = document.querySelector('[data-error="cep"]');
     state.errorNumber = document.querySelector('[data-error="number"]');
 
-    console.log(state);
-
+    
 
     state.inputNumber.addEventListener('change', handleInputNumberChange);
+    state.btnClear.addEventListener('click', handleBtnClearClick);
 
 }
 
+// Primeiro tratamento de eventos no formulário
 function handleInputNumberChange(event){
     if (event.target.value == ""){
-        setFormError("number", "O campo requerido");
+        setFormError("number", "Campo requerido");
     }
     else{
         setFormError("number", "");
     }
 }
+
+//Função para botão limpar
+function handleBtnClearClick(event){
+    // Não quer que o formulário seja enviado e seja chamada a pagina inicial novamente
+    event.preventDefault();
+    clearForm()
+}
+
+//Função para limpar o formulário
+
+function clearForm(){
+    state.inputCep.value = "";
+    state.inputStreet.value = "";
+    state.inputNumber.value = "";
+    state.inputCity.value = "";
+
+    setFormError("cep", "");
+    setFormError("number", "");
+
+    state.inputCep.focus();
+}
+
 
 
 function setFormError(key, value){
