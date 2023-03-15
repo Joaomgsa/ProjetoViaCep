@@ -1,4 +1,5 @@
 import Address  from "../models/address.js";
+import * as requestService from "../services/requestService.js";
 
 function State(){
     this.address = new Address();
@@ -34,6 +35,9 @@ export function init(){
 
     state.inputNumber.addEventListener('change', handleInputNumberChange);
     state.btnClear.addEventListener('click', handleBtnClearClick);
+    state.btnSave.addEventListener('click', handleBtnSaveClick);
+
+
 
 }
 
@@ -52,6 +56,12 @@ function handleBtnClearClick(event){
     // Não quer que o formulário seja enviado e seja chamada a pagina inicial novamente
     event.preventDefault();
     clearForm()
+}
+
+async function handleBtnSaveClick(event){
+    event.preventDefault();
+    const result = await requestService.getJson("https://viacep.com.br/ws/23071480/json/");
+    console.log(result);
 }
 
 //Função para limpar o formulário
