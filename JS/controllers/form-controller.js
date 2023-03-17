@@ -1,5 +1,5 @@
 import Address  from "../models/address.js";
-import * as requestService from "../services/requestService.js";
+import * as addressService from "../services/addressService.js";
 
 function State(){
     this.address = new Address();
@@ -36,7 +36,7 @@ export function init(){
     state.inputNumber.addEventListener('change', handleInputNumberChange);
     state.btnClear.addEventListener('click', handleBtnClearClick);
     state.btnSave.addEventListener('click', handleBtnSaveClick);
-
+    state.inputCep.addEventListener('change', handleInputCepChange);
 
 
 }
@@ -51,11 +51,31 @@ function handleInputNumberChange(event){
     }
 }
 
+//Input CEP change
+async function handleInputCepChange(event){
+    const cep = event.target.value;
+    
+    try{
+        const address = await addressService.findByCep(cep);
+   
+        state.inputCity.value = address.city;
+        state.inputStreet.value = address.street;
+        state.address = address;
+        setFormError("cep", "");
+        state.inputNumber.focus();
+    }
+    catch(e){
+        state.inputCity.value = "";
+        state.inputStreet.value = "";
+        setFormError("cep", "Informe um cep válido");
+    }
+}
+
 //Função para botão limpar
 function handleBtnClearClick(event){
     // Não quer que o formulário seja enviado e seja chamada a pagina inicial novamente
     event.preventDefault();
-    clearForm()
+    console.log(event.target);
 }
 
 async function handleBtnSaveClick(event){
