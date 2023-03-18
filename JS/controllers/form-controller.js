@@ -78,6 +78,8 @@ function handleBtnClearClick(event){
     console.log(event.target);
 }
 
+//  nova função para salvar o endereço
+
 async function handleBtnSaveClick(event){
     event.preventDefault();
     const result = await requestService.getJson("https://viacep.com.br/ws/23071480/json/");
