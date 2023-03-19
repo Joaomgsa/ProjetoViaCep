@@ -51,7 +51,7 @@ function handleInputNumberChange(event){
     }
 }
 
-//Input CEP change
+//Input CEP change Evento 
 async function handleInputCepChange(event){
     const cep = event.target.value;
     
@@ -75,7 +75,7 @@ async function handleInputCepChange(event){
 function handleBtnClearClick(event){
     // Não quer que o formulário seja enviado e seja chamada a pagina inicial novamente
     event.preventDefault();
-    console.log(event.target);
+    clearForm();
 }
 
 //  nova função para salvar o endereço
@@ -83,7 +83,7 @@ function handleBtnClearClick(event){
 async function handleBtnSaveClick(event){
     event.preventDefault();
     const result = await requestService.getJson("https://viacep.com.br/ws/23071480/json/");
-    console.log(result);
+    console.log(state.address);
 }
 
 //Função para limpar o formulário
