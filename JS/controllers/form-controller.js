@@ -1,5 +1,6 @@
 import Address  from "../models/address.js";
 import * as addressService from "../services/addressService.js";
+import * as listController from "./list-controller.js";
 
 function State(){
     this.address = new Address();
@@ -88,7 +89,7 @@ function handleBtnClearClick(event){
 
 async function handleBtnSaveClick(event){
     event.preventDefault();
-    console.log(state.address);
+    listController.addCard(state.address);
 }
 
 //Função para limpar o formulário
