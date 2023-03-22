@@ -89,7 +89,13 @@ function handleBtnClearClick(event){
 
 async function handleBtnSaveClick(event){
     event.preventDefault();
+
+    const errors = addressService.getErrors(state.address);
+
+    console.log(errors);
+    
     listController.addCard(state.address);
+    clearForm();
 }
 
 //Função para limpar o formulário
@@ -102,6 +108,8 @@ function clearForm(){
 
     setFormError("cep", "");
     setFormError("number", "");
+
+    state.address = new Address();
 
     state.inputCep.focus();
 }
