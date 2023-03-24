@@ -93,7 +93,9 @@ async function handleBtnSaveClick(event){
     const errors = addressService.getErrors(state.address);
 
     console.log(errors);
-    
+    const keys = Object.keys(errors);
+    console.log(keys);
+
     listController.addCard(state.address);
     clearForm();
 }
