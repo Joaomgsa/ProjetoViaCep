@@ -6,3 +6,4 @@ formController.init();
 listController.init();
 
 console.log('JS\dsviacep.js');
+console.log('Eu estouaaquiii');
